@@ -13,8 +13,9 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/read", (req, res) => {
-  res.render("read");
+app.get("/read", async (req, res) => {
+    const users = await userModel.find();
+  res.render("read", {users});
 });
 // Post method
 app.post("/create", async (req, res) => {
@@ -24,7 +25,7 @@ app.post("/create", async (req, res) => {
     email,
     image,
   });
-  res.send(createUser);
+  res.redirect('/read');
 });
 
 app.listen(port, () => {
