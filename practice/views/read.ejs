@@ -14,21 +14,25 @@
           All Users
         </h1>
         <div class="flex gap-4 flex-wrap">
-          <% users.forEach((user) => { %>
-          <div class="max-w-72 rounded-lg bg-zinc-700 mt-12 p-4">
-            <div class="w-full h-45 bg-red-600 rounded-lg">
-                <img src="<%= user.image %>" alt="" class="h-full w-full object-cover">
+          <% if(users.length > 0) { %>
+            <% users.forEach((user) => { %>
+            <div class="max-w-72 rounded-lg bg-zinc-700 mt-12 p-4">
+              <div class="w-full h-45 bg-red-600 rounded-lg">
+                  <img src="<%= user.image %>" alt="" class="h-full w-full object-cover">
+              </div>
+              <h1 class="mt-2 font-bold text-xl tracking-tighter">
+                <%= user.name %>
+              </h1>
+              <h3 class="text-zinc-500 text-md"><%= user.email %> </h3>
+              <div class="flex gap-4 mt-4">
+                <a href="" class="text-zinc-400">Edit user</a>
+                <a href="/delete/<%= user._id %>" class="text-red-700">Delete user</a>
+              </div>
             </div>
-            <h1 class="mt-2 font-bold text-xl tracking-tighter">
-              <%= user.name %>
-            </h1>
-            <h3 class="text-zinc-500 text-md"><%= user.email %> </h3>
-            <div class="flex gap-4 mt-4">
-              <a href="" class="text-zinc-400">Edit user</a>
-              <a href="" class="text-red-700">Delete user</a>
-            </div>
-          </div>
-          <% }) %>
+            <% }) %>
+         <% } else { %>
+                <h1 class="mt-6 text-zinc-500">No User Yet.</h1>
+        <% } %>  
         </div>
       </div>
       <div class="mt-8 ml-5 flex justify-center">
