@@ -17,6 +17,22 @@ app.get("/create", async (req, res) => {
     res.send(createUser);
 });
 
+app.get("/post/create", async (req, res) => {
+    const id = "684a832a287a87d8aee3c0e9";
+    const createPost = await postModel.create({
+        postData: 'Hello world!',
+        user: id,
+    });
+    const user = await userModel.findOne({_id: id});
+    user.posts.push(createPost._id);
+    await user.save();
+    res.send({
+        createPost,
+        user,
+    });
+});
+
+
 app.listen(port, () => {
   console.log("App start");
 });
