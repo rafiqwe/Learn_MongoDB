@@ -3,11 +3,14 @@ const mongoose = require("mongoose");
 // mongoose.connect(`mongodb://127.0.0.1:27017/DataAssociation`);
 
 const postSchema = mongoose.Schema({
-    post: String,
-    name: String,
+    postData: String,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
     date : {
-        typeof : Date,
-        default: Date.now, 
+        type: Date,
+        default: Date.now() 
     }
 });
 
